@@ -10,5 +10,5 @@ package tanzimfx;
  * @author Administrator
  */
 public interface PersonInterface {
-  
+  public String generateId();
 }
