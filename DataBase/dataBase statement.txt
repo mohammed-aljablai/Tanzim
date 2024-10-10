@@ -87,3 +87,78 @@ CREATE TABLE Education (
 
 CREATE TABLE Education (subjectID NUMBER(5) NOT NULL,  StudentID NUMBER(8) NOT NULL, doctorID NUMBER(6) NOT NULL,  degree VARCHAR2(255) NOT NULL,  theTeachingYear NUMBER(4) NOT NULL, PRIMARY KEY (subjectID, StudentID, doctorID), FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE, FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE, FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID) ON DELETE CASCADE );
 -- حذفت ال القوس المحدب اصلن ما ادري انت ليش ضفته
+-----------------------------------------------------------------
+
+insert into groups values(1, 1, 'science and engineering', 'cs', 1);
+insert into groups values(2, 2, 'science and engineering', 'cs', 1);
+insert into groups values(3, 1, 'science and engineering', 'it', 1);
+insert into groups values(4, 1, 'science and engineering', 'it', 2);
+insert into groups values(5, 3, 'science and engineering', 'cs', 4);
+insert into groups values(6, 4, 'science and engineering', 'it', 1);
+insert into groups values(7, 1, 'science and engineering', 'Cyber security', 1);
+insert into groups values(8, 10, 'dentistry', 'othodontics', 2);
+insert into groups values(9, 1, 'medical', 'medicine', 1);
+commit;
+
+insert into students values(1, 'mohammed', '10-sep-20', 9);
+insert into students values(2, 'mohammed aljablai', '29-dec-04', 2);
+insert into students values(3, 'gamal aldeen', '07-sep-03', 2);
+insert into students values(4, 'ali', '20-may-02', 3);
+insert into students values(5, 'khalid', '14-oct-02', 5);
+insert into students values(6, 'noha', '19-oct-01', 7);
+insert into students values(7, 'soha', '06-dec-00', 8);
+insert into students values(8, 'lona', '09-sep-99', 2);
+insert into students values(9, 'salah', '10-may-06', 1);
+insert into students values(10, 'jamail', '01-may-03', 4);
+commit;
+
+insert into subjects values(1, 'programing');
+insert into subjects values(2, 'OOP');
+insert into subjects values(3, 'DB');
+commit;
+
+insert into doctor values(1, 'mohammed aldwaid', 4);
+insert into doctor values(2, 'salma mohammed', 4);
+insert into doctor values(3, 'walied', 4);
+insert into doctor values(4, 'ethar', 4);
+insert into doctor values(5, 'ibrahim', 4);
+commit;
+
+-- أول قبل الاضافة نعدل على نوع الجدول ونخليه
+-- رقم ويتحقق هل اصغر من 100 وأكبر من 0
+alter table grade modify( degree number(3));
+alter table grade modify( degree number(3), constraint degree_checker check(degree >= 0 AND degree <= 100) );
+
+insert into grade values(2, 1, 90);
+insert into grade values(3, 1, 85);
+insert into grade values(5, 1, 70);
+insert into grade values(5, 2, 80);
+insert into grade values(5, 3, 85);
+commit;
+
+
+
+insert into documents values(1, 1, 1, 1, 1);
+insert into documents values(2, 1, 1, 1, 0);
+insert into documents values(3, 0, 1, 1, 1);
+insert into documents values(4, 1, 0, 0, 1);
+insert into documents values(5, 0, 1, 1, 1);
+commit;
+
+-- أول قبل الاضافة نعدل على نوع الجدول ونخليه
+-- رقم ويتحقق هل اصغر من 100 وأكبر من 0
+alter table education modify( degree number(3), constraint degree_checker_for_sub check(degree >= 0 AND degree <= 100) );
+
+insert into education values(1, 2, 2, 90, 2023);
+insert into education values(2, 2, 2, 95, 2024);
+insert into education values(1, 2, 3, 98, 2020);
+insert into education values(1, 1, 2, 94, 2020);
+insert into education values(1, 1, 1, 96, 2019);
+commit;
+
+
+
+
+
+
+
