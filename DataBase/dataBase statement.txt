@@ -1,0 +1,89 @@
+-- انشاء مساخدم ومنح الصلاحيات والدخول عليه
+create user tanzim identified by mohgml1234;
+grant DBA to tanzim;
+connect tanzim;
+
+-- إنشاء جدول المجموعات
+
+CREATE TABLE Groups (
+    groupID NUMBER(5) PRIMARY KEY,  -- ID للمجموعة، حتى 5 أرقام
+    LevelNumber NUMBER(2) NOT NULL CHECK (LevelNumber >= 1 AND LevelNumber <= 12),  -- رقم المستوى، حتى رقمين
+    section VARCHAR2(55) NOT NULL,  -- القسم
+    specialization VARCHAR2(55) NOT NULL,  -- التخصص
+    GroupName NUMBER(2) -- اسم المجموعة يجب أن يكون فريدًا
+    -- بالعكس يمكن أن تتكر المجموعة ولكن القسم والتخصص لا يتغير لذالك حذفت الفريد بشكل كامل
+    -- قللت من الحروف لاننا لا نحتاج كل تلك الكمية
+    -- غيرت نوع القروب وحعلته رقم لانه اما يكون في القروب الاول وما شابه
+    -- مستوى أول - كلية العلوم والهندسة - علوم حاسوب - المجموعة الاولى
+    -- قد يكون المجموعة فارغة
+);
+
+
+-- إنشاء جدول الطلاب
+CREATE TABLE Students (
+    StudentID NUMBER(8) PRIMARY KEY, 
+    name VARCHAR2(255) NOT NULL,  
+    birthDate DATE, 
+    groupID NUMBER(5) NOT NULL, 
+    FOREIGN KEY (groupID) REFERENCES Groups(groupID) ON DELETE CASCADE
+);
+
+
+
+-- إنشاء جدول الدرجات
+CREATE TABLE Grade (
+    StudentID NUMBER(8) NOT NULL,  
+    LevelNumber NUMBER(2) NOT NULL CHECK (LevelNumber >= 1 AND LevelNumber <= 12),  
+    degree VARCHAR2(255) NOT NULL,  
+    PRIMARY KEY (StudentID, LevelNumber),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE
+);
+
+
+
+-- إنشاء جدول المستندات
+CREATE TABLE Documents (
+    StudentID NUMBER(8) PRIMARY KEY,  
+    photoForProofDocuments NUMBER(1) NOT NULL CHECK(photoForProofDocuments=0 OR photoForProofDocuments=1),  -- صورة إثبات الهوية
+    personalPhoto NUMBER(1) NOT NULL CHECK(personalPhoto=0 OR personalPhoto=1), 
+    TrueCopy NUMBER(1) NOT NULL CHECK(TrueCopy=0 OR TrueCopy=1),
+    HighSchoolCertificate NUMBER(1) NOT NULL CHECK(HighSchoolCertificate=0 OR HighSchoolCertificate=1), 
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE
+    -- إثباتات الهوية قيمة صح أو خطاء موجودة أو لا مش نص
+    -- نخليه رقم من خانة واحدة يكتب صفر أم واحد
+);
+
+
+-- إنشاء جدول المواد الدراسية
+
+CREATE TABLE Subjects (
+    subjectID NUMBER(5) PRIMARY KEY, 
+    Name VARCHAR2(55) UNIQUE NOT NULL
+    -- قللت عشان ما يحتاج كل هذا الحجم
+);
+
+
+
+-- إنشاء جدول الدكاترة
+CREATE TABLE Doctor (
+    doctorID NUMBER(6) PRIMARY KEY, 
+    name VARCHAR2(255) NOT NULL,  
+    experienceYears NUMBER(2) NOT NULL );
+
+
+-- إنشاء جدول التعليم
+CREATE TABLE Education (
+    subjectID NUMBER(5) NOT NULL,  
+    StudentID NUMBER(8) NOT NULL, 
+    doctorID NUMBER(6) NOT NULL,  
+    degree VARCHAR2(255) NOT NULL,  
+    theTeachingYear NUMBER(4) NOT NULL,
+
+    PRIMARY KEY (subjectID, StudentID, doctorID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE,
+    FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE,
+    FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID) ON DELETE CASCADE
+);
+
+CREATE TABLE Education (subjectID NUMBER(5) NOT NULL,  StudentID NUMBER(8) NOT NULL, doctorID NUMBER(6) NOT NULL,  degree VARCHAR2(255) NOT NULL,  theTeachingYear NUMBER(4) NOT NULL, PRIMARY KEY (subjectID, StudentID, doctorID), FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE, FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE, FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID) ON DELETE CASCADE );
+-- حذفت ال القوس المحدب اصلن ما ادري انت ليش ضفته
