@@ -1,0 +1,41 @@
+/*
+ * Empty Stylesheet file.
+3200FF
+*/ 
+
+.mainFxmlClass {
+
+}
+
+.background{
+    -fx-background-image: url(../media/jr-korpa-9XngoIpxcEo-unsplash.jpg);
+    -fx-background-size: cover;
+}
+.mainContainer{
+    -fx-background-color: #eee;
+}
+.log-title{
+}
+.login-container{
+    -fx-display: flex;
+    -fx-flex-direction: column;
+    -fx-border-radius: 100px !important;
+    -fx-width: 30%;
+    /*-fx-background-color: #0000002e;*/
+    -fx-color: #fff;
+    -fx-height: 260px;
+    -fx-padding: 10px;
+    -fx-text-align: center;
+    -fx-align-items: center;
+    -fx-position: absolute;
+    -fx-top: 50%;
+    -fx-left: 50%;
+    -fx-transform: translate(-50%, -50%);
+    /*-fx-background-color: #333;*/
+    /*properties does not work*/
+    -fx-backdrop-filter: blur(1px);
+    -fx-box-shadow: -1px -1px 10px 1px #0000001f;
+}
+/*.main-loginHeading{
+    : #fff;
+}*/
