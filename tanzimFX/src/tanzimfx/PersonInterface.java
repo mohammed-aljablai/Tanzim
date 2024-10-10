@@ -1,14 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ - This project call tanzim.
+ - tanzim: is a project where orgnize the stuednt and the doctor, in addtion
+   the emplyee life> from sending msg update degree and more...
+ - this project have been worked by:
+   - Mohammed Abdullh Al-jablai
+   - Gamal Aldeen Al-hakl
+   - Youseef Al-asadi
+   - abdAlmalik
+*/
 package tanzimfx;
 
-/**
- *
- * @author Administrator
- */
 public interface PersonInterface {
-  public String generateId();
+    // this methods to make id, this useless until now.
+    // هذه الدالة تقوم بصنع رقم مميز وحتى اللحظة لا فائدة منها
+    public String generateId();
 }

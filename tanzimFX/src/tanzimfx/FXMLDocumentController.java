@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ - This project call tanzim.
+ - tanzim: is a project where orgnize the stuednt and the doctor, in addtion
+   the emplyee life> from sending msg update degree and more...
+ - this project have been worked by:
+   - Mohammed Abdullh Al-jablai
+   - Gamal Aldeen Al-hakl
+   - Youseef Al-asadi
+   - abdAlmalik
+*/
 package tanzimfx;
 
 import java.net.URL;
@@ -12,10 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-/**
- *
- * @author Administrator
- */
 public class FXMLDocumentController implements Initializable {
   
   @FXML
