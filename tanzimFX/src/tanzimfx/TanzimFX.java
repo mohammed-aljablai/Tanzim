@@ -26,6 +26,7 @@ public class TanzimFX extends Application {
     
     stage.setScene(scene);
     stage.show();
+    stage.setTitle("Tanzim login");
   }
 
   /**

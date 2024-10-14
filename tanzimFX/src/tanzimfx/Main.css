@@ -1,7 +1,11 @@
 /*
  * Empty Stylesheet file.
-3200FF
 */ 
+
+/*
+    - Main Color: #3200FF
+    - Background Color (light color): #eee 
+*/
 
 .mainFxmlClass {
 
@@ -36,6 +40,26 @@
     -fx-backdrop-filter: blur(1px);
     -fx-box-shadow: -1px -1px 10px 1px #0000001f;
 }
-/*.main-loginHeading{
-    : #fff;
-}*/
+.main-loginHeading{
+    /*: #fff;*/
+}
+
+.dash-board{
+/*    -fx-background-color: #3200FF;*/
+}
+.ptofile{
+    -fx-border-radius: 25px;
+    -fx-border: 3px #3200FF solid; 
+    -fx-background-image: url(../media/jr-korpa-9XngoIpxcEo-unsplash.jpg);
+}
+.MyBootom{
+    -fx-text-fill: black !important;
+    -fx-background-color: #00000000 !important;
+    -fx-alignment: center;
+}
+.listsUL{
+    
+}
+HoverDashBoard:hover{
+    background-color: #3200FF;
+}
