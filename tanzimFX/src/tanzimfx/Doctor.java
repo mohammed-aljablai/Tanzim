@@ -12,12 +12,14 @@
     - this doctor class
 */
 package tanzimfx;
-
+import java.util.ArrayList;
 
 public class Doctor extends Person{
     
     // properties
     private int experienceYears;
+    private ArrayList<Generalization> myMsg = new ArrayList<>();
+    private ArrayList<Education> myEdcate = new ArrayList<>();
 
     // Methods
     // counstructor method
@@ -33,6 +35,20 @@ public class Doctor extends Person{
     }
     public void setExperienceYears(int experienceYears) {
         this.experienceYears = experienceYears;
+    }
+    // my masseges (Latest news)
+    public ArrayList<Generalization> getMyMsg() {
+        return myMsg;
+    }
+    public void setMyMsg(ArrayList<Generalization> myMsg) {
+        this.myMsg = myMsg;
+    }
+    // my edcuation
+    public ArrayList<Education> getMyEdcate() {
+        return myEdcate;
+    }
+    public void setMyEdcate(ArrayList<Education> myEdcate) {
+        this.myEdcate = myEdcate;
     }
 
     @Override

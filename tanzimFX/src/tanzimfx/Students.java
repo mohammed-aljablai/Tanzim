@@ -18,7 +18,9 @@ public class Students extends Person{
     
     // properties
     private LocalDate birthDate; 
-    private ArrayList<Double> grades = new ArrayList<Double>(); 
+    private ArrayList<Double> grades = new ArrayList<>(); 
+    private ArrayList<Generalization> myMsg = new ArrayList<>();
+    private ArrayList<Education> myEdcate = new ArrayList<>();
     private double  finalGrades;
     private Documents require;
     private Group inGroup;
@@ -64,6 +66,21 @@ public class Students extends Person{
     }
     public void setInGroup(Group inGroup) {
         this.inGroup = inGroup;
+    }
+    // my masseges (Latest news)
+    public ArrayList<Generalization> getMyMsg() {
+        return myMsg;
+    }
+    public void setMyMsg(ArrayList<Generalization> myMsg) {
+        this.myMsg = myMsg;
+    }
+    // my edcuation
+    public ArrayList<Education> getMyEdcate() {
+        return myEdcate;
+    }
+
+    public void setMyEdcate(ArrayList<Education> myEdcate) {
+        this.myEdcate = myEdcate;
     }
     
     @Override
