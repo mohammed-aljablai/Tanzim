@@ -12,6 +12,7 @@
     - this doctor class
 */
 package tanzimfx;
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Doctor extends Person{
@@ -40,15 +41,16 @@ public class Doctor extends Person{
     public ArrayList<Generalization> getMyMsg() {
         return myMsg;
     }
-    public void setMyMsg(ArrayList<Generalization> myMsg) {
-        this.myMsg = myMsg;
+    public void setMyMsg(String groupID, Date sendDate, String content) {
+        this.myMsg.add(new Generalization(groupID, getId(),sendDate, content));
     }
     // my edcuation
     public ArrayList<Education> getMyEdcate() {
         return myEdcate;
     }
-    public void setMyEdcate(ArrayList<Education> myEdcate) {
-        this.myEdcate = myEdcate;
+    public void setMyEdcate
+        (String subjectID, String StudentID, String doctorID, double degree, Date theTeachingYear) {
+        this.myEdcate.add(new Education(subjectID, StudentID, doctorID, degree, theTeachingYear));
     }
 
     @Override

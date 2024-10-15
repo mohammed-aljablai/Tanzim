@@ -12,24 +12,30 @@
     - this sender and recevier msg class
 */
 package tanzimfx;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Generalization {
     
     // properties
-    private LocalDate historyOfSend;
+    private String groupID;
+    private String doctorId;
+    private Date historyOfSend;
     private String Content;
 
     // Methods
     // counstructor method
-    public Generalization(LocalDate historyOfSend, String Content) {
-        this.historyOfSend = historyOfSend;
-        this.Content = Content;
-    }
+  public Generalization(String groupID, String doctorId, Date historyOfSend, String Content) {
+    this.groupID = groupID;
+    this.doctorId = doctorId;
+    this.historyOfSend = historyOfSend;
+    this.Content = Content;
+  }
+    
     
     // Setter and getter Methods
     // get date of send
-    public LocalDate getHistoryOfSend() {
+    public Date getHistoryOfSend() {
         return historyOfSend;
     }
     // set and get content

@@ -2,6 +2,7 @@
 package tanzimfx;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 class DataBaseConnection {
       public Connection connect;
@@ -12,7 +13,7 @@ class DataBaseConnection {
     String DataBaseUrl = "jdbc:oracle:thin:@localhost:1521:"+DataBaseName;
     try {
       connect= DriverManager.getConnection(DataBaseUrl, DataBaseUserName, DataBasePassword);
-    } catch (Exception e) {
+    } catch (SQLException e) {
       //System.err.println(e.getMessage());
       e.printStackTrace();
     }

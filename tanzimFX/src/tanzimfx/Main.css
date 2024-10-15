@@ -63,3 +63,11 @@
 HoverDashBoard:hover{
     background-color: #3200FF;
 }
+.wllcomMsg{
+    -fx-font: 50 bold;
+    -fx-text-fill:  #3282F6;
+}
+.doctorName{
+  -fx-font: 25  bold;
+   -fx-text-fill:  #000;  
+}

@@ -11,23 +11,24 @@
 // this is the Students class
 // هذا كلاس الطالب
 package tanzimfx;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Students extends Person{
     
     // properties
-    private LocalDate birthDate; 
+    private Date birthDate; 
+    private Documents require;
+    private Group inGroup;
+    private double  finalGrades;
     private ArrayList<Double> grades = new ArrayList<>(); 
     private ArrayList<Generalization> myMsg = new ArrayList<>();
     private ArrayList<Education> myEdcate = new ArrayList<>();
-    private double  finalGrades;
-    private Documents require;
-    private Group inGroup;
 
     // Methods
     // counstructor method
-    public Students(LocalDate birthDate, Documents require, Group inGroup, String id, String name) {
+    public Students(Date birthDate, Documents require, Group inGroup, String id, String name) {
         super(id, name);
         this.birthDate = birthDate;
         this.require = require;
@@ -36,18 +37,18 @@ public class Students extends Person{
 
     // Setter and getter Methods
     // birthDate
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
     // grades
     public ArrayList<Double> getGrades() {
         return grades;
     }
-    public void setGrades(ArrayList<Double> grades) {
-        this.grades = grades;
+    public void setGrades(Double grades) {
+        this.grades.add(grades);
     }
     // finalGrades
     public double getFinalGrades() {
@@ -71,16 +72,17 @@ public class Students extends Person{
     public ArrayList<Generalization> getMyMsg() {
         return myMsg;
     }
-    public void setMyMsg(ArrayList<Generalization> myMsg) {
-        this.myMsg = myMsg;
+    public void setMyMsg(String groupID, String doctorId, Date sendDate, String content) {
+        this.myMsg.add(new Generalization(groupID, doctorId,sendDate, content));
     }
     // my edcuation
     public ArrayList<Education> getMyEdcate() {
         return myEdcate;
     }
 
-    public void setMyEdcate(ArrayList<Education> myEdcate) {
-        this.myEdcate = myEdcate;
+    public void setMyEdcate
+        (String subjectID, String StudentID, String doctorID, double degree, Date theTeachingYear) {
+        this.myEdcate.add(new Education(subjectID, StudentID, doctorID, degree, theTeachingYear));
     }
     
     @Override

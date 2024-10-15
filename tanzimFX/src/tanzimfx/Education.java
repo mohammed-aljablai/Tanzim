@@ -11,6 +11,7 @@
 // This is a class (Education) link between Students, Doctors, and Subjects
 // هذا الكلاس للربط بين الطالب والدكتور والمواد
 package tanzimfx;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Education {
@@ -20,11 +21,11 @@ public class Education {
     private String StudentID;
     private String doctorID;
     private double degree;
-    private LocalDate theTeachingYear;
+    private Date theTeachingYear;
 
     // Methods
     // counstructor method
-    public Education(String subjectID, String StudentID, String doctorID, double degree, LocalDate theTeachingYear) {
+    public Education(String subjectID, String StudentID, String doctorID, double degree, Date theTeachingYear) {
         this.subjectID = subjectID;
         this.StudentID = StudentID;
         this.doctorID = doctorID;
@@ -62,10 +63,10 @@ public class Education {
         this.degree = degree;
     }
     // theTeachingYear
-    public LocalDate getTheTeachingYear() {
+    public Date getTheTeachingYear() {
         return theTeachingYear;
     }
-    public void setTheTeachingYear(LocalDate theTeachingYear) {
+    public void setTheTeachingYear(Date theTeachingYear) {
         this.theTeachingYear = theTeachingYear;
     }
     
