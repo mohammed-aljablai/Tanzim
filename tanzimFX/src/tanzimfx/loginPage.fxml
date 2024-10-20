@@ -65,7 +65,7 @@
                      </toggleGroup>
                   </JFXRadioButton>
                   <JFXRadioButton fx:id="isDoctorChosen" text="Doctor" toggleGroup="$personType1" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                  <Button fx:id="logButton" mnemonicParsing="false" onAction="#loginAction" prefHeight="25.0" prefWidth="311.0" style="-fx-background-color: #3200FF;" text="Log in" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="17">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginAction" prefHeight="25.0" prefWidth="311.0" style="-fx-background-color: #3200FF;" text="Log in" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="17">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
