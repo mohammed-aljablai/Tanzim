@@ -6,7 +6,7 @@ public class StudyCourse {
   private String teacherName;
   private double avg;
 
-  public StudyCourse(String couseName, String teacherName, double avg) {
+  public StudyCourse(String couseName, String teacherName, Double avg) {
     this.couseName = couseName;
     this.teacherName = teacherName;
     this.avg = avg;
@@ -28,11 +28,11 @@ public class StudyCourse {
     this.teacherName = teacherName;
   }
 
-  public double getAvg() {
+  public Double getAvg() {
     return avg;
   }
 
-  public void setAvg(double avg) {
+  public void setAvg(Double avg) {
     this.avg = avg;
   }
   
