@@ -99,7 +99,7 @@ insert into students values(4, 'ali', '1234', '20-may-02', 3);
 insert into students values(5, 'khalid', '1234', '14-oct-02', 5);
 insert into students values(6, 'noha', '1234', '19-oct-01', 7);
 insert into students values(7, 'soha', '1234', '06-dec-00', 8);
-insert into students values(8, 'lona', '09-sep-99', 2);
+insert into students values(8, 'lona', '1234','09-sep-99', 2);
 insert into students values(9, 'salah','1234',  '10-may-06', 1);
 insert into students values(10, 'jamail', '1234', '01-may-03', 4);
 commit;
