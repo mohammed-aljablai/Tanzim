@@ -12,7 +12,6 @@ package tanzimfx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.time.LocalDate;
 // graphic inter face
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXPasswordField;
@@ -23,20 +22,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 // for data base connection
 import java.sql.Connection;
-import java.sql.Date;
 import javafx.scene.control.Button;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class LoginPageController implements Initializable {
-
-  // My Class Variable
   // dataBase Variable
   Statement stateSentence;
   ResultSet theResult;
@@ -53,44 +48,34 @@ public class LoginPageController implements Initializable {
   // Chosen button
   @FXML
   private JFXRadioButton isStudentChosen;
-  private JFXRadioButton isDoctorChosen;
   // log in and msg
   @FXML
   private Label wrongEnterMsg;
 
   // Methods
   @FXML
+  // All logIn Action
   public void loginAction(ActionEvent e) {
     if (idFiled.getText().isEmpty() || passwordFiled.getText().isEmpty()) {
       wrongEnterMsg.setText("Please Fill ID and pasword");
     } else {
       if (isStudentChosen.isSelected()) {
         if (studentIsExists()) {
-          wrongEnterMsg.setText("You have sing in Seccusfully");
           try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentsFXML.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-          } catch (Exception ee) {
-            ee.printStackTrace();
-          }
-        } else {
-          wrongEnterMsg.setText("Wrong ID or password.");
-        }
-      } else {
-        if (doctorIsExists()) {
-          wrongEnterMsg.setText("You have sing in Seccusfully");
-          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctoerFXML.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
+            openScene("StudentsFXML.fxml", "Tanzim Students");
           } catch (Exception ex) {
-            Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("The Erroe is: " + ex.getMessage());
           }
-        }
-      } 
+        } else {wrongEnterMsg.setText("Wrong ID or password.");}
+      }else{
+      if (doctorIsExists()) {
+          try {
+            openScene("DoctoerFXML.fxml", "Tanzim Doctor");
+          } catch (Exception ex) {
+            System.err.println("The Erroe is: " + ex.getMessage());
+          }
+        } else {wrongEnterMsg.setText("Wrong ID or password.");}
+      }
     }
   }
 
@@ -98,8 +83,8 @@ public class LoginPageController implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
     // TODO
   }
-//  @FXML
 
+  // Cheack if Student Exists
   public boolean studentIsExists() {
     boolean isExists = false;
 
@@ -115,8 +100,9 @@ public class LoginPageController implements Initializable {
         if (theResult.getString("PASSWORD").equals(passwordFiled.getText())
                 && theResult.getString("STUDENTID").equals(idFiled.getText())) {
           isExists = true;
-          studentNeededMethods myStudentObj = new studentNeededMethods();
-       }
+          SharedData.getInstance().setId(Integer.parseInt(idFiled.getText()));
+          SharedData.getInstance().setName(theResult.getString("NAME"));
+        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -125,14 +111,14 @@ public class LoginPageController implements Initializable {
 
     return isExists;
   }
-
+  // Cheach if doctor Exists
   public boolean doctorIsExists() {
     boolean isExists = false;
 
     DataBaseConnection connect = new DataBaseConnection();
     Connection myConnect = connect.getConnection();
     String myStatement
-            = "select * from DOCTOR where DOCTORID=" + Integer.parseInt(idFiled.getText()) + " and passWord='" + passwordFiled.getText() + "'";
+            = "SELECT * FROM DOCTOR WHERE DOCTORID=" + Integer.parseInt(idFiled.getText()) + " and passWord='" + passwordFiled.getText() + "'";
 
     try {
       stateSentence = myConnect.createStatement();
@@ -141,7 +127,9 @@ public class LoginPageController implements Initializable {
         if (theResult.getString("PASSWORD").equals(passwordFiled.getText())
                 && theResult.getString("DOCTORID").equals(idFiled.getText())) {
           isExists = true;
-          doctorNeededMethods myDrObj = new doctorNeededMethods();
+          SharedData.getInstance().setId(Integer.parseInt(idFiled.getText()));
+          SharedData.getInstance().setName(theResult.getString("NAME"));
+          SharedData.getInstance().setExYreas(theResult.getInt("EXPERIENCEYEARS"));
         }
       }
     } catch (SQLException e) {
@@ -152,25 +140,19 @@ public class LoginPageController implements Initializable {
     return isExists;
   }
   
-  /*
-  public void openStudentScene() throws Exception {
-    // hide login page
-   // loginButton.getScene().getWindow().hide();
-    // show the new window
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentsFXML.fxml"));
-    Stage stage = new Stage();
-    stage.setScene(new Scene(loader.load()));
-    stage.show();
-  }
-  public void openDoctorScene() throws Exception {
+  
+  // Opining a New window
+  public void openScene(String fileName, String title) throws Exception {
     // hide login page
     loginButton.getScene().getWindow().hide();
     // show the new window
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("DoctoerFXML.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource(fileName));
     Stage stage = new Stage();
-    stage.setScene(new Scene(loader.load()));
-    stage.setTitle("Tanzim - Student");
+    Scene scene = new Scene(root);
+
+    stage.setScene(scene);
     stage.show();
+    stage.setTitle(title);
   }
-  */
+
 }
