@@ -26,42 +26,30 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <TabPane layoutX="395.0" layoutY="14.0" prefHeight="655.0" prefWidth="740.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="355.0" prefHeight="682.0" prefWidth="785.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Home">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="242.0" layoutY="31.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="          Courses" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="266.0" endY="545.5" layoutX="-23.0" layoutY="-495.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="346.29290771484375" endY="544.7070922851562" layoutX="500.0" layoutY="-495.0" startX="-12.99993896484375" startY="545.5" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="661.79296875" endY="544.7070922851562" layoutX="50.0" layoutY="64.0" startX="-2.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <TableView layoutX="14.0" layoutY="98.0" prefHeight="447.0" prefWidth="712.0" style="-fx-background-color: #eee;">
+                              <TableView fx:id="studyCourse" editable="true" layoutX="14.0" layoutY="98.0" prefHeight="510.0" prefWidth="754.0" style="-fx-background-color: #eee;">
                                 <columns>
-                                  <TableColumn fx:id="course" prefWidth="444.0" text="Couers" />
-                                  <TableColumn fx:id="DoctorsenderName" prefWidth="158.0" text="Doctoer" />
-                                    <TableColumn fx:id="degree" prefWidth="109.0" text="Avg" />
+                                  <TableColumn fx:id="course" prefWidth="556.0" text="Couers" />
+                                  <TableColumn fx:id="DoctorsenderName" prefWidth="124.0" text="Doctoer" />
+                                    <TableColumn fx:id="degree" prefWidth="73.0" text="Avg" />
                                 </columns>
                               </TableView>
+                              <HBox alignment="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="100.0" prefWidth="785.0">
+                                 <children>
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="          Courses" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                      </content>
@@ -70,90 +58,33 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="247.0" layoutY="37.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="      Latest News" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="227.79296875" endY="544.7070922851562" layoutX="508.0" layoutY="-489.0" startX="-15.20709228515625" startY="544.7070922851562" stroke="#3282f6">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="211.79290771484375" endY="544.7070922851562" layoutX="28.0" layoutY="-488.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3282f6">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="661.79296875" endY="544.7070922851562" layoutX="38.0" layoutY="61.0" startX="-2.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <VBox layoutX="79.0" layoutY="111.0" prefHeight="131.0" prefWidth="567.0" spacing="8.0" style="-fx-border-color: #0000 #0000  #333 #0000;">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="785.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="567.0" spacing="8.0">
-                                       <children>
-                                          <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../media/679060d15d1dbd809ff81fe1cbe60748.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="162.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="149.0" style="-fx-text-fill: #000; -fx-font-weight: bold;" text="Dr.Name" />
-                                                <Label prefHeight="18.0" prefWidth="149.0" text="History" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="72.0" prefWidth="567.0" text="Label" />
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="Latest News" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
+                              <VBox layoutX="16.0" layoutY="100.0" prefHeight="510.0" prefWidth="755.0" spacing="20.0">
+                                 <children>
+                                    <TableView fx:id="GeneralizationDateList" editable="true" prefHeight="442.0" prefWidth="754.0" style="-fx-background-color: #eee;">
+                                       <columns>
+                                          <TableColumn fx:id="msg" prefWidth="562.0" text="Generalization" />
+                                          <TableColumn fx:id="drName" prefWidth="118.0" text="Doctoer" />
+                                          <TableColumn fx:id="date" prefWidth="73.0" text="date" />
+                                       </columns>
+                                    </TableView>
+                                    <Button mnemonicParsing="false" onAction="#refreachGeneralization" prefHeight="47.0" prefWidth="755.0" style="-fx-background-color: #3282F6; -fx-border-radius: 0px; -fx-background-radius: 0px;" text="Refreach" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </VBox>
-                              <VBox layoutX="79.0" layoutY="268.0" prefHeight="131.0" prefWidth="567.0" spacing="8.0" style="-fx-border-color: #0000 #0000  #333 #0000;">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="567.0" spacing="8.0">
-                                       <children>
-                                          <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../media/679060d15d1dbd809ff81fe1cbe60748.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="162.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="149.0" style="-fx-text-fill: #000; -fx-font-weight: bold;" text="Dr.Name" />
-                                                <Label prefHeight="18.0" prefWidth="149.0" text="History" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="72.0" prefWidth="567.0" text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox layoutX="79.0" layoutY="418.0" prefHeight="131.0" prefWidth="567.0" spacing="8.0" style="-fx-border-color: #0000 #0000  #333 #0000;">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="567.0" spacing="8.0">
-                                       <children>
-                                          <ImageView fitHeight="53.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../media/679060d15d1dbd809ff81fe1cbe60748.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="162.0">
-                                             <children>
-                                                <Label prefHeight="18.0" prefWidth="149.0" style="-fx-text-fill: #000; -fx-font-weight: bold;" text="Dr.Name" />
-                                                <Label prefHeight="18.0" prefWidth="149.0" text="History" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <Label prefHeight="72.0" prefWidth="567.0" text="Label" />
-                                 </children>
-                              </VBox>
-                              <Button layoutX="76.0" layoutY="568.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="579.0" text="Refreach" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -162,32 +93,20 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="247.0" layoutY="69.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="           Tasks" textFill="WHITE">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="785.0">
+                                 <children>
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="Taskes" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
+                              <Label layoutX="130.0" layoutY="267.0" text="⏱ Coming Soon" textFill="#3282f6">
                                  <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="227.79296875" endY="544.7070922851562" layoutX="508.0" layoutY="-457.0" startX="-15.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="211.79290771484375" endY="544.7070922851562" layoutX="28.0" layoutY="-456.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="661.79296875" endY="544.7070922851562" layoutX="38.0" layoutY="61.0" startX="-2.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Label layoutY="223.0" prefHeight="146.0" prefWidth="711.0" text="                     Pending Addition😊." textFill="#eb0202">
-                                 <font>
-                                    <Font size="36.0" />
+                                    <Font name="System Bold" size="64.0" />
                                  </font>
                               </Label>
                            </children>
@@ -198,34 +117,22 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="247.0" layoutY="35.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="         Timetable" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="227.79296875" endY="544.7070922851562" layoutX="508.0" layoutY="-491.0" startX="-15.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="211.79290771484375" endY="544.7070922851562" layoutX="28.0" layoutY="-490.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="661.79296875" endY="544.7070922851562" layoutX="38.0" layoutY="61.0" startX="-2.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <ImageView fitHeight="472.0" fitWidth="724.0" layoutX="10.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="472.0" fitWidth="724.0" layoutX="41.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../media/٢٠٢٤١٠١٤_٠٠٤٧٣٨.jpg" />
                                  </image>
                               </ImageView>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="785.0">
+                                 <children>
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="Time Table" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                      </content>
@@ -234,32 +141,20 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="247.0" layoutY="69.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="           Library" textFill="WHITE">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="785.0">
+                                 <children>
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="Library" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
+                              <Label layoutX="130.0" layoutY="267.0" text="⏱ Coming Soon" textFill="#3282f6">
                                  <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="227.79296875" endY="544.7070922851562" layoutX="508.0" layoutY="-457.0" startX="-15.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="211.79290771484375" endY="544.7070922851562" layoutX="28.0" layoutY="-456.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="661.79296875" endY="544.7070922851562" layoutX="38.0" layoutY="61.0" startX="-2.20709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Label layoutX="20.0" layoutY="230.0" prefHeight="146.0" prefWidth="711.0" text="                     Pending Addition😊." textFill="#eb0202">
-                                 <font>
-                                    <Font size="36.0" />
+                                    <Font name="System Bold" size="64.0" />
                                  </font>
                               </Label>
                            </children>
@@ -268,65 +163,42 @@
                   </Tab>
                   <Tab text="Settings">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label layoutX="2.0" layoutY="251.0" prefHeight="31.0" prefWidth="451.0" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="21.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="228.0" layoutY="29.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="  Updata Password" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="27.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Label>
-                              <Line endX="266.0" endY="545.5" layoutX="510.0" layoutY="-496.0" startX="-36.70709228515625" startY="544.7070922851562" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <Line endX="346.29290771484375" endY="544.7070922851562" layoutX="-119.0" layoutY="-497.0" startX="-12.99993896484375" startY="545.5" stroke="#3304bf">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
-                              </Line>
-                              <VBox layoutX="162.0" layoutY="172.0" prefHeight="274.0" prefWidth="409.0" spacing="20.0">
+                              <VBox layoutX="252.0" layoutY="124.0" prefHeight="245.0" prefWidth="278.0" spacing="10.0">
                                  <children>
-                                    <VBox prefHeight="72.0" prefWidth="409.0">
+                                    <VBox prefHeight="56.0" prefWidth="409.0">
                                        <children>
-                                          <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="171.0" text="Confirm New Password:" textFill="#170000">
+                                          <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="171.0" text="Confirm New Password:" textFill="#3282f6">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <JFXPasswordField fx:id="newPassword" />
+                                          <JFXPasswordField fx:id="newPassword" focusColor="#3282f6" unFocusColor="#333333" />
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="77.0" prefWidth="409.0">
+                                    <VBox prefHeight="56.0" prefWidth="409.0">
                                        <children>
-                                          <Label contentDisplay="CENTER" lineSpacing="50.0" prefHeight="27.0" prefWidth="171.0" text=" New Password:" textFill="#0a0000">
+                                          <Label contentDisplay="CENTER" lineSpacing="50.0" prefHeight="27.0" prefWidth="171.0" text=" New Password:" textFill="#3282f6">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <JFXPasswordField fx:id="newConfPassword" />
+                                          <JFXPasswordField fx:id="newConfPassword" focusColor="#3282f6" unFocusColor="#333333" />
                                        </children>
                                     </VBox>
                                     <Label fx:id="wrongPssMsg" prefHeight="32.0" prefWidth="342.0" />
-                                    <Button layoutX="10.0" layoutY="251.0" mnemonicParsing="false" onAction="#UpdatePassword" prefHeight="30.0" prefWidth="458.0" text="  Updata Password">
-                                       <effect>
-                                          <DropShadow />
-                                       </effect>
+                                    <Button layoutX="10.0" layoutY="251.0" mnemonicParsing="false" onAction="#UpdatePassword" prefHeight="30.0" prefWidth="458.0" style="-fx-background-color: #3282F6; -fx-border-width: 0px;" text="  Updata Password" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
                                     </Button>
                                  </children>
                               </VBox>
-                              <Button layoutX="171.0" layoutY="498.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="397.0" text="Log out">
-                                 <effect>
-                                    <DropShadow />
-                                 </effect>
+                              <Button fx:id="logoutBut" layoutX="192.0" layoutY="494.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="37.0" prefWidth="397.0" style="-fx-background-color: red;" text="Log out" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
                               </Button>
                            </children>
                         </AnchorPane>
@@ -341,7 +213,7 @@
                   </DisplacementMap>
                </effect>
             </TabPane>
-            <Pane layoutX="6.0" layoutY="8.0" prefHeight="663.0" prefWidth="385.0">
+            <Pane layoutX="6.0" layoutY="8.0" prefHeight="663.0" prefWidth="350.0">
                <children>
                   <Label layoutX="64.0" layoutY="351.0" prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #0019D6;" text="  Name Student" textFill="WHITE">
                      <font>
@@ -369,14 +241,14 @@
                   <DropShadow />
                </effect>
             </Pane>
-            <Pane layoutX="16.0" layoutY="18.0" prefHeight="663.0" prefWidth="385.0">
+            <Pane layoutX="-6.0" prefHeight="681.0" prefWidth="366.0">
                <effect>
                   <DropShadow />
                </effect>
                <children>
-                  <VBox alignment="CENTER" prefHeight="631.0" prefWidth="362.0" spacing="25.0" style="-fx-background-color: #eee;">
+                  <VBox alignment="CENTER" prefHeight="681.0" prefWidth="362.0" spacing="25.0" style="-fx-background-color: #fff;">
                      <children>
-                        <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="255.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../media/af7be2c213e650793055fbe0e7be45b5.jpg" />
                            </image>
@@ -386,10 +258,22 @@
                         </ImageView>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="TOP_CENTER" prefHeight="73.0" prefWidth="245.0" styleClass="wllcomMsg" stylesheets="@Main.css" text="Wellcom" />
-                              <Label fx:id="StuName" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="Student Name" />
-                              <Label fx:id="labalId" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="0" />
-                              <Label fx:id="labalLevel" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="Level no." />
+                              <Label alignment="TOP_CENTER" prefHeight="88.0" prefWidth="284.0" styleClass="wllcomMsg" stylesheets="@Main.css" text="Wellcom" textFill="#3282f6">
+                                 <font>
+                                    <Font name="System Bold" size="64.0" />
+                                 </font></Label>
+                              <Label fx:id="StuName" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="Student Name">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font></Label>
+                              <Label fx:id="labalId" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <Label fx:id="labalLevel" alignment="TOP_CENTER" prefHeight="34.0" prefWidth="362.0" styleClass="doctorName" stylesheets="@Main.css" text="Level no.">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                      </children>
