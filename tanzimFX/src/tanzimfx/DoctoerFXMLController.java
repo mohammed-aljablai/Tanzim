@@ -157,11 +157,96 @@ public class DoctoerFXMLController implements Initializable {
     return isExist;
   }
   
+  // Courses Table
+  @FXML
+  private TableView<TechCourse> teachingCourse;
+  @FXML
+  private TableColumn<TechCourse, String> course;
+  @FXML
+  private TableColumn<TechCourse, Integer> TeachinYear;
+  public ObservableList<TechCourse> addCourses(){
+    ObservableList<TechCourse> myCourses = FXCollections.observableArrayList();
+    String statment="SELECT DOCTOR.NAME, SUBJECTS.NAME AS sub_Name, THETEACHINGYEAR FROM SUBJECTS, DOCTOR, EDUCATION WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
+    DataBaseConnection c=new DataBaseConnection();
+    Connection myConnect=c.getConnection();
+    try {
+      stateSentence = myConnect.createStatement();
+      theResult = stateSentence.executeQuery(statment);
+      while (theResult.next() && theResult != null) {
+        TechCourse dataforTeacher = new TechCourse(theResult.getString("sub_Name"), theResult.getInt("THETEACHINGYEAR"));
+        myCourses.add(dataforTeacher);
+      }
+    } catch (SQLException e) {
+      System.err.println("The erro is: "+ e.getMessage());
+      System.err.println("SQL: "+e.getSQLState());
+      System.err.println("SQL: "+e.getErrorCode());
+    }
+    return myCourses;
+  }
+  private ObservableList<TechCourse>addCoursesDataList;
+  public void addCoursesDataListShowData(){
+    addCoursesDataList=addCourses();
+    course.setCellValueFactory(new PropertyValueFactory<>("SUBJECTS.NAME"));
+    try {
+      TeachinYear.setCellValueFactory(new PropertyValueFactory<>("THETEACHINGYEAR"));
+    } catch (Exception e) {
+      System.err.println("The Error: " + e.getMessage());
+    }
+    try {
+      teachingCourse.setItems(addCoursesDataList);
+    } catch (Exception e) {
+      System.err.println("The Error: " + e.getMessage());
+    }
+    
+  }
+  
+  // Groups Table
+  @FXML
+  private TableView<TeacherGroups> teacherGroups;
+  @FXML
+  private TableColumn<TeacherGroups, Integer> groupID;
+  @FXML
+  private TableColumn<TeacherGroups, Integer> levNo;
+  @FXML
+  private TableColumn<TeacherGroups, String> Specilazation;
+  @FXML
+  private TableColumn<TeacherGroups, Integer> groupNo;
+  public ObservableList<TeacherGroups> addGroups(){
+    ObservableList<TeacherGroups> myGroups = FXCollections.observableArrayList();
+    String statment="SELECT GROUPS.GROUPID, LEVELNUMBER, SPECIALIZATION, GROUPNAME FROM EDUCATION, STUDENTS, GROUPS, DOCTOR WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID";
+    DataBaseConnection c=new DataBaseConnection();
+    Connection myConnect=c.getConnection();
+    try {
+      stateSentence = myConnect.createStatement();
+      theResult = stateSentence.executeQuery(statment);
+      while (theResult.next() && theResult != null) {
+        TeacherGroups data = new TeacherGroups(theResult.getInt("GROUPID"), theResult.getInt("LEVELNUMBER"), theResult.getString("SPECIALIZATION"), theResult.getInt("GROUPNAME"));
+        myGroups.add(data);
+      }
+    } catch (SQLException e) {
+      System.err.println("The erro is: "+ e.getMessage());
+      System.err.println("SQL: "+e.getSQLState());
+      System.err.println("SQL: "+e.getErrorCode());
+    }
+    return myGroups;
+  }
+  private ObservableList<TeacherGroups>addGroupsDataList;
+  public void addGroupsShowDataList(){
+    addGroupsDataList=addGroups();
+    groupID.setCellValueFactory(new PropertyValueFactory<>("GROUPID"));
+    levNo.setCellValueFactory(new PropertyValueFactory<>("LEVELNUMBER"));
+    Specilazation.setCellValueFactory(new PropertyValueFactory<>("SPECIALIZATION"));
+    groupNo.setCellValueFactory(new PropertyValueFactory<>("GROUPNAME"));
+    teacherGroups.setItems(addGroupsDataList);
+  }
+  
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     drName.setText("Dr." + name);
     labalId.setText(""+myId);
     labalExprince.setText("Exprince " + exYears + " years");
+    addCoursesDataListShowData();
+    addGroupsShowDataList();
   }
   public void CloseWindow() throws Exception {
     // hide login page
@@ -170,99 +255,3 @@ public class DoctoerFXMLController implements Initializable {
     
 }
 
-/*
-Doctor user;
-    // DashBoard var
-    @FXML
-    private Label drName;
-    @FXML
-    private Label labalId;
-    @FXML
-    private Label labalExprince;
-    // Circlure var
-    @FXML
-    private JFXTextArea content;
-    @FXML
-    private JFXTextField groupID;
-    @FXML
-    public void insetIntoGenerlzation(ActionEvent e){
-      DataBaseConnection connect = new DataBaseConnection();
-      Connection myConnect = connect.getConnection();
-      String myStatement
-            = "INSERT INTO GENERALIZATION (DOCTORID, GROUPID, HISTORYOFSEND, CONTENT) VALUES (?, ?, ?, ?);";
-      PreparedStatement statement;
-      try {
-        statement = myConnect.prepareStatement(myStatement);
-        statement.setString(1, user.getId());
-        statement.setString(2, groupID.getText());
-        Date sendDate = null;
-        statement.setDate(3, sendDate);
-        statement.setString(4, content.getText());
-      } catch (SQLException ex) {
-        ex.printStackTrace();
-      }
-    }
-    //Password Updateing
-    @FXML
-    private JFXPasswordField newPassword;
-    @FXML
-    private JFXPasswordField newConfPassword;
-    @FXML
-    private Label wrongPssMsg;
-    @FXML
-    public void UpdatePassword(ActionEvent e){
-      if(!(newPassword.getText().equals(newConfPassword.getText())))
-        wrongPssMsg.setText("ENter the same password int the tow filed");
-      else{
-        DataBaseConnection connect = new DataBaseConnection();
-        Connection myConnect = connect.getConnection();
-        String myStatement
-            = "UPDATE DOCTOR SET PASSWORD=? WHERE DOCTORID=?";
-        PreparedStatement statement;
-        try {
-          statement = myConnect.prepareStatement(myStatement);
-          statement.setString(1, newPassword.getText());
-          statement.setString(2, user.getId());
-        } catch (SQLException ex) {
-        ex.printStackTrace();
-        }
-      }
-    }
-    //Close window var
-    private Button logOut;
-  // Table
-  TechCourse dataforTeacher;
-  @FXML
-  private TableView<TechCourse> taCourse;
-  @FXML
-  private TableColumn<TechCourse, String> course;
-  @FXML
-  private TableColumn<TechCourse, String> TeacherName;
-  @FXML
-  private TableColumn<TechCourse, Date> degree;
-  public ObservableList<TechCourse> addCourses(){
-    
-    ObservableList<TechCourse> myCourses = FXCollections.observableArrayList();
-    String statment="SELECT STUDENTS.\"NAME\", SUBJECTS.\"NAME\", DOCTOR.\"NAME\", EDUCATION.DEGREE FROM SUBJECTS, DOCTOR, EDUCATION, STUDENTS WHERE DOCTOR.DOCTORID=? AND STUDENTS.STUDENTID=EDUCATION.STUDENTID AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
-    DataBaseConnection c=new DataBaseConnection();
-    Connection conNew=c.getConnection();
-    try {
-      PreparedStatement pre = conNew.prepareStatement(statment);
-      pre.setInt(1, Integer.parseInt(user.getId()));
-      ResultSet Res = pre.executeQuery(statment);
-      while (Res.next()) {
-        dataforTeacher = new TechCourse(Res.getString("SUBJECTS.\"NAME\""), Res.getDate("THETEACHINGYEAR"), Res.getString("SUBJECTS.\"NAME\""));
-        myCourses.add(dataforTeacher);
-      }
-    } catch (SQLException e) {
-    }
-    return myCourses;
-  }
-  private ObservableList<TechCourse>addclintDataList;
-  public void addclintDataListShowData(){
-    addclintDataList=addCourses();
-    course.setCellValueFactory(new PropertyValueFactory<>("SUBJECTS.\"NAME\""));
-    TeacherName.setCellValueFactory(new PropertyValueFactory<>("DOCTOR.\"NAME\""));
-    degree.setCellValueFactory(new PropertyValueFactory<>("EDUCATION.DEGREE"));
-  }
-*/

@@ -34,13 +34,6 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView editable="true" layoutX="14.0" layoutY="98.0" prefHeight="510.0" prefWidth="754.0" style="-fx-background-color: #eee;">
-                                <columns>
-                                  <TableColumn prefWidth="418.0" text="Couers" />
-                                  <TableColumn prefWidth="155.0" text="Teaching Year" />
-                                    <TableColumn prefWidth="180.0" text="Group" />
-                                </columns>
-                              </TableView>
                               <HBox alignment="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="100.0" prefWidth="785.0">
                                  <children>
                                     <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
@@ -52,6 +45,31 @@
                                     <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
                                  </children>
                               </HBox>
+                              <TableView fx:id="teachingCourse" editable="true" layoutX="14.0" layoutY="98.0" prefHeight="192.0" prefWidth="754.0" style="-fx-background-color: #eee;">
+                                <columns>
+                                  <TableColumn fx:id="course" prefWidth="604.0" text="Couers" />
+                                  <TableColumn fx:id="TeachinYear" minWidth="0.0" prefWidth="145.0" text="Teaching Year" />
+                                </columns>
+                              </TableView>
+                              <HBox alignment="CENTER" layoutX="9.0" layoutY="300.0" prefHeight="100.0" prefWidth="785.0">
+                                 <children>
+                                    <Line endX="266.0" endY="545.5" startX="23.0" startY="545.5" stroke="#3282f6" />
+                                    <Label prefHeight="39.0" prefWidth="245.0" style="-fx-background-color: #3282F6;" text="          Groups" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="346.29290771484375" endY="544.7070922851562" startX="88.10304260253906" startY="543.9141845703125" stroke="#3282f6" />
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="teacherGroups" editable="true" layoutX="13.0" layoutY="400.0" prefHeight="192.0" prefWidth="758.0" style="-fx-background-color: #eee;">
+                                 <columns>
+                                    <TableColumn fx:id="groupID" minWidth="0.0" prefWidth="86.0" text="Group ID" />
+                                    <TableColumn fx:id="levNo" prefWidth="110.0" text="Level Number" />
+                                    <TableColumn fx:id="Specilazation" minWidth="0.0" prefWidth="416.0" text="Specilazation" />
+                                    <TableColumn fx:id="groupNo" minWidth="1.0" prefWidth="140.0" text="Group Number" />
+                                 </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                      </content>
