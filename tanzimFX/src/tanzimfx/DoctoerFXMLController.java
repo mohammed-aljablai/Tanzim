@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -30,10 +31,147 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DoctoerFXMLController implements Initializable {
-    Doctor user = doctorNeededMethods.dUser;
+    // important varable
+  int myId = SharedData.getInstance().getId();
+  String name = SharedData.getInstance().getName();
+  int exYears = SharedData.getInstance().getExYreas();
+  Statement stateSentence;
+  ResultSet theResult;
+  // FXML varable
+  @FXML
+  private Label labalId;
+  @FXML
+  private Button logoutBut;
+  @FXML
+  private Label drName;
+  @FXML
+  private Label labalExprince;
+  
+//Password Updateing
+  @FXML
+  private JFXPasswordField newPassword;
+  @FXML
+  private JFXPasswordField newConfPassword;
+  @FXML
+  private Label wrongPssMsg;
+  @FXML
+  public void UpdatePassword(ActionEvent e){
+    if(!(newPassword.getText().equals(newConfPassword.getText()))){
+      wrongPssMsg.setText("Enter the same password in the tow filed");
+      wrongPssMsg.setTextFill(Color.RED);
+    }
+    else if(newPassword.getText().isEmpty() || newConfPassword.getText().isEmpty()){
+      wrongPssMsg.setText("Enter PassWord, please.");
+      wrongPssMsg.setTextFill(Color.RED);
+    }else{
+      DataBaseConnection connect = new DataBaseConnection();
+      Connection myConnect = connect.getConnection();
+      String myStatement
+          = "UPDATE DOCTOR SET PASSWORD=? WHERE DOCTORID=?";
+      PreparedStatement statement;
+      try {
+        statement = myConnect.prepareStatement(myStatement);
+        statement.setString(1, newPassword.getText());
+        statement.setString(2, ""+myId);
+        statement.execute();
+        wrongPssMsg.setText("The password has changed Seccsuflly");
+        wrongPssMsg.setTextFill(Color.GREEN);
+      } catch (SQLException ex) {
+        wrongPssMsg.setText("we have Faced Proplem in cinnection>");
+        wrongPssMsg.setTextFill(Color.RED);
+        System.err.println("The Erro: " + ex.getMessage());
+      }
+      newPassword.setText("");
+      newConfPassword.setText("");
+    }
+  }  
+
+  // sending msg
+  @FXML
+  private JFXTextArea msg;
+  @FXML
+  private JFXTextField groupId;
+  @FXML
+  private Label msgWrong;
+  @FXML
+  private Button sendingBut;
+  public void sendingEvents(ActionEvent e){
+    if(groupId.getText().isEmpty() || msg.getText().isEmpty()){
+      msgWrong.setText("Please Fill them first.");
+      msgWrong.setTextFill(Color.RED);
+    } else if(groupIsExist()){
+      insetIntoGenerlzation();
+    }
+    else{
+      msgWrong.setText("Wrong Group Id, please Cheack.");
+      msgWrong.setTextFill(Color.RED);
+    }
+  }
+  public void insetIntoGenerlzation(){
+      DataBaseConnection connect = new DataBaseConnection();
+      Connection myConnect = connect.getConnection();
+      String myStatement
+            = "INSERT INTO GENERALIZATION (DOCTORID, GROUPID, HISTORYOFSEND, CONTENT) VALUES (?, ?, ?, ?)";
+      PreparedStatement statement;
+      try {
+        statement = myConnect.prepareStatement(myStatement);
+        statement.setInt(1, myId);
+        statement.setInt(2, Integer.parseInt(groupId.getText()));
+        Date sendDate = Date.valueOf(LocalDate.now());
+        statement.setDate(3, sendDate);
+        statement.setString(4, msg.getText());
+        statement.execute();
+        msgWrong.setText("It has send seccsuflly.");
+        msgWrong.setTextFill(Color.GREEN);
+        groupId.setText("");
+        msg.setText("");
+      } catch (SQLException ex) {
+        msgWrong.setText("wrong in connection. The Error: " + ex.getMessage());
+        msgWrong.setTextFill(Color.RED);
+      }
+    }
+  public boolean groupIsExist(){
+    boolean isExist= false;
+    
+    DataBaseConnection connect = new DataBaseConnection();
+    Connection myConnect = connect.getConnection();
+    String myStatement
+            = "SELECT GROUPID FROM GROUPS";
+
+    try {
+      stateSentence = myConnect.createStatement();
+      theResult = stateSentence.executeQuery(myStatement);
+      while (theResult.next() && theResult != null) {
+        if (theResult.getInt("GROUPID") == Integer.parseInt(groupId.getText()) ) {
+          isExist = true;
+        }
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      isExist = false;
+    }
+    return isExist;
+  }
+  
+  @Override
+  public void initialize(URL url, ResourceBundle rb) {
+    drName.setText("Dr." + name);
+    labalId.setText(""+myId);
+    labalExprince.setText("Exprince " + exYears + " years");
+  }
+  public void CloseWindow() throws Exception {
+    // hide login page
+    logoutBut.getScene().getWindow().hide();
+  }
+    
+}
+
+/*
+Doctor user;
     // DashBoard var
     @FXML
     private Label drName;
@@ -127,17 +265,4 @@ public class DoctoerFXMLController implements Initializable {
     TeacherName.setCellValueFactory(new PropertyValueFactory<>("DOCTOR.\"NAME\""));
     degree.setCellValueFactory(new PropertyValueFactory<>("EDUCATION.DEGREE"));
   }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        drName.setText("Dr."+user.getName());
-        labalId.setText(user.getId());
-        labalExprince.setText("Exprince "+user.getExperienceYears()+ " years");
-    }    
-    
-    public void CloseWindow() throws Exception{
-      // hide login page
-      logOut.getScene().getWindow().hide();
-    }
-    
-}
+*/
