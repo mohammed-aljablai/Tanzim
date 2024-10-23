@@ -149,7 +149,7 @@ public class LoginPageController implements Initializable {
     Parent root = FXMLLoader.load(getClass().getResource(fileName));
     Stage stage = new Stage();
     Scene scene = new Scene(root);
-
+    scene.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
     stage.setScene(scene);
     stage.show();
     stage.setTitle(title);

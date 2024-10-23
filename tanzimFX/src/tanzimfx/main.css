@@ -1,0 +1,90 @@
+/* 
+    Created on : Oct 23, 2024, 10:16:10 AM
+    Author     : Mohammed Al-jablai
+*/
+.root {
+    /*background*/
+    -fx-background: white; /*Background*/
+    -divider-light: #0000001f;/* Line color */
+    /*swatch*/
+    -primary-swatch-500:  #3282F6; /* Text selected */
+    -primary-swatch-300:  #3282F69f;/* text color*/
+    /*font var*/
+    -fx-font-family: "Roboto";
+    -fx-font-size: 10.0pt;
+    /* */
+    -fx-mark-color: ladder(-fx-color, 30%, white, 31%, derive(-fx-color, -63%));
+    /*color var*/
+    -fx-color: -fx-base;
+    -fx-base: #ececec;
+}
+
+
+
+.tab-pane {
+   /*tab size*/ 
+    -fx-tab-max-height: 7.68mm;
+    -fx-tab-min-height: 7.68mm;
+    /*tab bscground and line*/
+    /*-charm-tab-background: -fx-background;*/
+    -charm-tab-divider: -divider-light;
+    /*text color*/
+    -charm-tab-text: -primary-swatch-300;
+    -charm-tab-text-selected: -primary-swatch-500;
+}
+.tab-pane>*.tab-header-area {
+    -fx-padding: 0px;
+}
+
+.tab-pane>*.tab-header-area>*.tab-header-background {
+    /*border*/
+    -fx-border-color: transparent transparent -charm-tab-divider transparent;
+    -fx-border-width: 1px, 1px, 1px, 1px;
+    /*background*/
+    -fx-background-color: -charm-tab-background;
+    /*zero*/
+    -fx-background-insets: 0px;
+    -fx-background-insets: 0px, 0px, 0px;
+}
+
+.tab-pane>*.tab-header-area>*.headers-region>*.tab {
+    /*backgrounds for tabs*/
+    -fx-background-color: -charm-tab-background;
+    /*Zero*/
+    -fx-background-insets: 0px, 0px, 0px;
+    -fx-background-radius: 0px, 0px, 0px;
+    -fx-border-color: transparent, transparent;
+    -fx-border-width: 1px, 1px, 1px, 1px, 2px, 2px, 2px, 2px;
+    /*Padding*/
+    -fx-padding: 3.2mm;
+}
+.tab-pane>*.tab-header-area>*.headers-region>*.tab:selected {
+    /*make under line blue when it is selected*/
+    -fx-border-color: transparent, transparent transparent -charm-tab-text-selected transparent;
+}
+
+.tab-pane>*.tab-header-area>*.headers-region>*.tab>*.tab-container>*.tab-label {
+    -fx-alignment: CENTER;
+    -fx-padding: 0px;
+    /*color text*/
+    -fx-text-fill: -charm-tab-text;
+}
+.tab-pane>*.tab-header-area>*.headers-region>*.tab:selected>*.tab-container>*.tab-label {
+    /*color selected txt*/
+    -fx-text-fill: -charm-tab-text-selected;
+}
+
+.text {
+    -fx-bounds-type: logical_vertical_center;
+    -fx-font-smoothing-type: lcd;
+}
+
+.tab-pane>*.tab-header-area>*.headers-region>*.tab>*.tab-container>*.tab-close-button {
+    -fx-background-color: -fx-mark-color;
+    -fx-effect: TWO_PASS_BOX, #ffffff66, 1px, 0px, 0px, 1px;
+    -fx-scale-shape: false;
+    -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
+}
+
+
+
