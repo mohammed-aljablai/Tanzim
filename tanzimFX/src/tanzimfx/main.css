@@ -2,6 +2,7 @@
     Created on : Oct 23, 2024, 10:16:10 AM
     Author     : Mohammed Al-jablai
 */
+/*Var*/
 .root {
     /*background*/
     -fx-background: white; /*Background*/
@@ -17,12 +18,15 @@
     /*color var*/
     -fx-color: -fx-base;
     -fx-base: #ececec;
+    /*table var*/
+    -fx-box-border: ladder(-fx-color, 20%, black, 30%, derive(-fx-color, -15%));
+    -fx-accent: #0096c9;
 }
 
 
-
+/*main pan*/
 .tab-pane {
-   /*tab size*/ 
+    /*tab size*/
     -fx-tab-max-height: 7.68mm;
     -fx-tab-min-height: 7.68mm;
     /*tab bscground and line*/
@@ -32,10 +36,10 @@
     -charm-tab-text: -primary-swatch-300;
     -charm-tab-text-selected: -primary-swatch-500;
 }
+/*header area*/
 .tab-pane>*.tab-header-area {
     -fx-padding: 0px;
 }
-
 .tab-pane>*.tab-header-area>*.tab-header-background {
     /*border*/
     -fx-border-color: transparent transparent -charm-tab-divider transparent;
@@ -46,7 +50,7 @@
     -fx-background-insets: 0px;
     -fx-background-insets: 0px, 0px, 0px;
 }
-
+/*tabs*/
 .tab-pane>*.tab-header-area>*.headers-region>*.tab {
     /*backgrounds for tabs*/
     -fx-background-color: -charm-tab-background;
@@ -62,7 +66,7 @@
     /*make under line blue when it is selected*/
     -fx-border-color: transparent, transparent transparent -charm-tab-text-selected transparent;
 }
-
+/*text in tabs*/
 .tab-pane>*.tab-header-area>*.headers-region>*.tab>*.tab-container>*.tab-label {
     -fx-alignment: CENTER;
     -fx-padding: 0px;
@@ -73,12 +77,10 @@
     /*color selected txt*/
     -fx-text-fill: -charm-tab-text-selected;
 }
-
 .text {
     -fx-bounds-type: logical_vertical_center;
     -fx-font-smoothing-type: lcd;
 }
-
 .tab-pane>*.tab-header-area>*.headers-region>*.tab>*.tab-container>*.tab-close-button {
     -fx-background-color: -fx-mark-color;
     -fx-effect: TWO_PASS_BOX, #ffffff66, 1px, 0px, 0px, 1px;
@@ -86,5 +88,113 @@
     -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
 }
 
+/* Tabel */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-insets: 0px, 1px;
+    -fx-padding: 1px;
+}
 
+.table-view *.column-header-background {
+    -fx-background-color: white;
+    -fx-background-insets: 0px;
+}
+.table-view *.filler {
+    -fx-background-color: #eaeaea, white;
+    -fx-background-insets: 0px, 0px 0px 1px 0px;
+    -fx-padding: 0px 0px 0px 0.5em;
+}
 
+.table-view *.column-header {
+    -fx-background-color: #eaeaea, white;
+    -fx-background-insets: 0px, 0px 0px 1px 0px;
+    -fx-padding: 0px 0px 0px 0.5em;
+    -fx-size: 3em;
+}
+.table-view *.column-overlay {
+    -fx-background-color: darkgray;
+    -fx-opacity: 0.3px;
+}
+.table-view *.column-resize-line {
+    -fx-background-color: -fx-background;
+    -fx-background: -fx-accent;
+    -fx-padding: 0em 0.0416667em 0em 0.0416667em;
+} 
+.table-view *.column-drag-header {
+    -fx-background-color: -fx-selection-bar;
+    -fx-border-color: transparent;
+    -fx-opacity: 0.6px;
+}
+.table-view>*.column-header-background>*.show-hide-columns-button {
+    -fx-background-color: #eaeaea, white;
+    -fx-background-insets: 0px, 0px 0px 1px 0px;
+    -fx-padding: 0px 0px 0px 0.5em;
+}
+
+.table-view>*.virtual-flow>*.scroll-bar:vertical {
+    -fx-background-insets: 0px, 0px 0px 0px 1px;
+    -fx-padding: -1px -1px -1px 0px;
+}
+.table-view>*.virtual-flow>*.scroll-bar:horizontal {
+    -fx-background-insets: 0px, 1px 0px 0px 0px;
+    -fx-padding: 0px -1px -1px -1px;
+}
+.table-view>*.virtual-flow>*.corner {
+    -fx-background-color: derive(-fx-base, -1%);
+}
+
+.scroll-bar *.increment-arrow {
+    -fx-padding: 0px;
+    -fx-shape: " ";
+}
+.scroll-bar>*.increment-button>*.increment-arrow {
+    -fx-background-color: -fx-mark-highlight-color, derive(-fx-base, -45%);
+}
+.scroll-bar>*.increment-button {
+    -fx-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: derive(-fx-box-border, 30%), 0%, 0%, 100%, 0%, NO_CYCLE, 0%, derive(-fx-base, -3%), 50%, derive(-fx-base, 5%), 100%, derive(-fx-base, -3%);
+}
+.scroll-bar:vertical *.track {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-border-color: transparent #eee transparent #eee;
+    -fx-border-radius: 2em;
+}
+.scroll-bar:vertical *.thumb {
+    -fx-background-color: derive(black, 90%);
+    -fx-background-insets: 2px, 0px, 0px;
+    -fx-background-radius: 2em;
+}
+.scroll-bar:vertical *.increment-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0px 10px 0px 0px;
+}
+.scroll-bar:vertical>*.increment-button {
+    -fx-background-insets: 1px 2px 1px 2px, 2px 3px 2px 3px, 3px 4px 3px 4px;
+}
+.scroll-bar:vertical *.decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0px 10px 0px 0px;
+}
+.scroll-bar:vertical>*.decrement-button {
+    -fx-background-insets: 1px 2px 1px 2px, 2px 3px 2px 3px, 3px 4px 3px 4px;
+}
+
+.scroll-bar:horizontal *.increment-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0px 0px 10px 0px;
+}
+.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 0px 0px 10px 0px;
+}
+.scroll-bar:horizontal {
+    -fx-background-color: derive(-fx-box-border, 30%), 0%, 0%, 0%, 100%, NO_CYCLE, 0%, derive(-fx-base, -3%), 50%, derive(-fx-base, 5%), 100%, derive(-fx-base, -3%);
+}
