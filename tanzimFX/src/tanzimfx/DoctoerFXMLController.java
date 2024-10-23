@@ -17,22 +17,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class DoctoerFXMLController implements Initializable {
     // important varable
@@ -159,21 +154,21 @@ public class DoctoerFXMLController implements Initializable {
   
   // Courses Table
   @FXML
-  private TableView<TechCourse> teachingCourse;
+  private TableView<TechCourse> TechCourse;
   @FXML
-  private TableColumn<TechCourse, String> course;
+  private TableColumn<TechCourse, String> couseName;
   @FXML
-  private TableColumn<TechCourse, Integer> TeachinYear;
+  private TableColumn<TechCourse, Integer> TeachingYear;
   public ObservableList<TechCourse> addCourses(){
     ObservableList<TechCourse> myCourses = FXCollections.observableArrayList();
-    String statment="SELECT DOCTOR.NAME, SUBJECTS.NAME AS sub_Name, THETEACHINGYEAR FROM SUBJECTS, DOCTOR, EDUCATION WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
+    String statment="SELECT DOCTOR.NAME, SUBJECTS.NAME AS couseName, THETEACHINGYEAR as TeachingYear FROM SUBJECTS, DOCTOR, EDUCATION WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
       stateSentence = myConnect.createStatement();
       theResult = stateSentence.executeQuery(statment);
       while (theResult.next() && theResult != null) {
-        TechCourse dataforTeacher = new TechCourse(theResult.getString("sub_Name"), theResult.getInt("THETEACHINGYEAR"));
+        TechCourse dataforTeacher = new TechCourse(theResult.getString("couseName"), theResult.getInt("TeachingYear"));
         myCourses.add(dataforTeacher);
       }
     } catch (SQLException e) {
@@ -186,14 +181,14 @@ public class DoctoerFXMLController implements Initializable {
   private ObservableList<TechCourse>addCoursesDataList;
   public void addCoursesDataListShowData(){
     addCoursesDataList=addCourses();
-    course.setCellValueFactory(new PropertyValueFactory<>("SUBJECTS.NAME"));
+    couseName.setCellValueFactory(new PropertyValueFactory<>("couseName"));
     try {
-      TeachinYear.setCellValueFactory(new PropertyValueFactory<>("THETEACHINGYEAR"));
+      TeachingYear.setCellValueFactory(new PropertyValueFactory<>("TeachingYear"));
     } catch (Exception e) {
       System.err.println("The Error: " + e.getMessage());
     }
     try {
-      teachingCourse.setItems(addCoursesDataList);
+      TechCourse.setItems(addCoursesDataList);
     } catch (Exception e) {
       System.err.println("The Error: " + e.getMessage());
     }
@@ -202,7 +197,7 @@ public class DoctoerFXMLController implements Initializable {
   
   // Groups Table
   @FXML
-  private TableView<TeacherGroups> teacherGroups;
+  private TableView<TeacherGroups> TeacherGroups;
   @FXML
   private TableColumn<TeacherGroups, Integer> groupID;
   @FXML
@@ -213,14 +208,14 @@ public class DoctoerFXMLController implements Initializable {
   private TableColumn<TeacherGroups, Integer> groupNo;
   public ObservableList<TeacherGroups> addGroups(){
     ObservableList<TeacherGroups> myGroups = FXCollections.observableArrayList();
-    String statment="SELECT GROUPS.GROUPID, LEVELNUMBER, SPECIALIZATION, GROUPNAME FROM EDUCATION, STUDENTS, GROUPS, DOCTOR WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID";
+    String statment="SELECT DISTINCT GROUPS.GROUPID AS groupID, LEVELNUMBER AS levNo, SPECIALIZATION AS Specilazation, GROUPNAME AS groupNo FROM EDUCATION, STUDENTS, GROUPS, DOCTOR, SUBJECTS WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID AND STUDENTS.STUDENTID=EDUCATION.STUDENTID;";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
       stateSentence = myConnect.createStatement();
       theResult = stateSentence.executeQuery(statment);
       while (theResult.next() && theResult != null) {
-        TeacherGroups data = new TeacherGroups(theResult.getInt("GROUPID"), theResult.getInt("LEVELNUMBER"), theResult.getString("SPECIALIZATION"), theResult.getInt("GROUPNAME"));
+        TeacherGroups data = new TeacherGroups(theResult.getInt("groupID"), theResult.getInt("levNo"), theResult.getString("Specilazation"), theResult.getInt("groupNo"));
         myGroups.add(data);
       }
     } catch (SQLException e) {
@@ -233,11 +228,11 @@ public class DoctoerFXMLController implements Initializable {
   private ObservableList<TeacherGroups>addGroupsDataList;
   public void addGroupsShowDataList(){
     addGroupsDataList=addGroups();
-    groupID.setCellValueFactory(new PropertyValueFactory<>("GROUPID"));
-    levNo.setCellValueFactory(new PropertyValueFactory<>("LEVELNUMBER"));
-    Specilazation.setCellValueFactory(new PropertyValueFactory<>("SPECIALIZATION"));
-    groupNo.setCellValueFactory(new PropertyValueFactory<>("GROUPNAME"));
-    teacherGroups.setItems(addGroupsDataList);
+    groupID.setCellValueFactory(new PropertyValueFactory<>("groupID"));
+    levNo.setCellValueFactory(new PropertyValueFactory<>("levNo"));
+    Specilazation.setCellValueFactory(new PropertyValueFactory<>("Specilazation"));
+    groupNo.setCellValueFactory(new PropertyValueFactory<>("groupNo"));
+    TeacherGroups.setItems(addGroupsDataList);
   }
   
   @Override
