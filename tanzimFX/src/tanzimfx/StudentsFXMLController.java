@@ -93,25 +93,27 @@ public class StudentsFXMLController implements Initializable {
   
   // Table
   @FXML
-  private TableView<StudyCourse> studyCourse;
+  private TableView<StudyCourse> StudyCourse;
   @FXML
-  private TableColumn<StudyCourse, String> course;
+  private TableColumn<StudyCourse, String> couseName;
   @FXML
-  private TableColumn<StudyCourse, String> DoctorsenderName;
+  private TableColumn<StudyCourse, String> teacherName;
   @FXML
-  private TableColumn<StudyCourse, Double> degree;
-  
+  private TableColumn<StudyCourse, Double> avg;
+  @FXML
   public ObservableList<StudyCourse> addCourses(){
     ObservableList<StudyCourse> myCourses = FXCollections.observableArrayList();
-    String statment="SELECT STUDENTS.NAME, SUBJECTS.NAME AS s_name, DOCTOR.NAME AS d_name, EDUCATION.DEGREE AS degree FROM SUBJECTS, DOCTOR, EDUCATION, STUDENTS WHERE STUDENTS.STUDENTID="+myId+" AND STUDENTS.STUDENTID=EDUCATION.STUDENTID AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
+    String statment="SELECT STUDENTS.NAME, SUBJECTS.NAME AS couseName, DOCTOR.NAME AS teacherName, EDUCATION.DEGREE AS avg FROM SUBJECTS, DOCTOR, EDUCATION, STUDENTS WHERE STUDENTS.STUDENTID="+myId+" AND STUDENTS.STUDENTID=EDUCATION.STUDENTID AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND SUBJECTS.SUBJECTID=EDUCATION.SUBJECTID";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
       stateSentence = myConnect.createStatement();
       theResult = stateSentence.executeQuery(statment);
       while (theResult.next() && theResult != null) {
-        StudyCourse data = new StudyCourse(theResult.getString("s_name"), theResult.getString("d_name"), theResult.getDouble("degree"));
+        StudyCourse data = new StudyCourse(theResult.getString("couseName"), theResult.getString("teacherName"), theResult.getDouble("avg")); // coreect structure
+        // It does stoarge data
         myCourses.add(data);
+        
       }
     } catch (SQLException e) {
       System.err.println("The erro is: "+ e.getMessage());
@@ -120,13 +122,16 @@ public class StudentsFXMLController implements Initializable {
     }
     return myCourses;
   }
-  private ObservableList<StudyCourse>addCourseDataList;
+  @FXML
+  ObservableList<StudyCourse>addCourseDataList;
+  @FXML
   public void addCourseShowDataList(){
     addCourseDataList=addCourses();
-    course.setCellValueFactory(new PropertyValueFactory<>("SUBJECTS.NAME"));
-    DoctorsenderName.setCellValueFactory(new PropertyValueFactory<>("DOCTOR.NAME"));
-    degree.setCellValueFactory(new PropertyValueFactory<>("EDUCATION.DEGREE"));
-    studyCourse.setItems(addCourseDataList);
+    
+    couseName.setCellValueFactory(new PropertyValueFactory<>("couseName"));
+    teacherName.setCellValueFactory(new PropertyValueFactory<>("teacherName"));
+    avg.setCellValueFactory(new PropertyValueFactory<>("avg"));
+    StudyCourse.setItems(addCourseDataList);
   }
   
   
@@ -136,20 +141,21 @@ public class StudentsFXMLController implements Initializable {
   @FXML
   private TableColumn<GeneralizationDateList, String> msg;
   @FXML
-  private TableColumn<GeneralizationDateList, String> drName;
+  private TableColumn<GeneralizationDateList, String> doctorName;
   @FXML
-  private TableColumn<GeneralizationDateList, Date> date;
+  private TableColumn<GeneralizationDateList, Date> sendDate;
+  @FXML
   public ObservableList<GeneralizationDateList> addMsg(){
     ObservableList<GeneralizationDateList> msg = FXCollections.observableArrayList();
     String statment
-            ="SELECT DOCTOR.NAME As dr_name, CONTENT, HISTORYOFSEND  FROM GENERALIZATION, DOCTOR, STUDENTS, GROUPS WHERE STUDENTS.STUDENTID="+myId+" AND STUDENTS.GROUPID=GENERALIZATION.GROUPID AND DOCTOR.DOCTORID=GENERALIZATION.DOCTORID";
+            ="SELECT DOCTOR.NAME As doctorName, CONTENT AS msg, HISTORYOFSEND As sendDate  FROM GENERALIZATION, DOCTOR, STUDENTS, GROUPS WHERE STUDENTS.STUDENTID="+myId+" AND STUDENTS.GROUPID=GENERALIZATION.GROUPID And GROUPS.GROUPID=STUDENTS.GROUPID AND DOCTOR.DOCTORID=GENERALIZATION.DOCTORID";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
       stateSentence = myConnect.createStatement();
       theResult = stateSentence.executeQuery(statment);
       while (theResult.next() && theResult != null) {
-        GeneralizationDateList data = new GeneralizationDateList(theResult.getString("CONTENT"), theResult.getString("dr_name"), theResult.getDate("HISTORYOFSEND"));
+        GeneralizationDateList data = new GeneralizationDateList(theResult.getString("msg"), theResult.getString("doctorName"), theResult.getDate("sendDate"));
         msg.add(data);
       }
     } catch (SQLException e) {
@@ -159,12 +165,14 @@ public class StudentsFXMLController implements Initializable {
     }
     return msg;
   }
+  @FXML
   private ObservableList<GeneralizationDateList>addMsgDataList;
+  @FXML
   public void addMsgShowDataList(){
     addMsgDataList=addMsg();
-    msg.setCellValueFactory(new PropertyValueFactory<>("CONTENT"));
-    drName.setCellValueFactory(new PropertyValueFactory<>("dr_name"));
-    date.setCellValueFactory(new PropertyValueFactory<>("HISTORYOFSEND"));
+    msg.setCellValueFactory(new PropertyValueFactory<>("msg"));
+    doctorName.setCellValueFactory(new PropertyValueFactory<>("doctorName"));
+    sendDate.setCellValueFactory(new PropertyValueFactory<>("sendDate"));
     GeneralizationDateList.setItems(addMsgDataList);
   }
   
