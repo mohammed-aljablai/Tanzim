@@ -21,13 +21,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class DoctoerFXMLController implements Initializable {
     // important varable
@@ -119,6 +123,7 @@ public class DoctoerFXMLController implements Initializable {
         Date sendDate = Date.valueOf(LocalDate.now());
         statement.setDate(3, sendDate);
         statement.setString(4, msg.getText());
+        statement.setInt(5, getLastGenId());
         statement.execute();
         msgWrong.setText("It has send seccsuflly.");
         msgWrong.setTextFill(Color.GREEN);
@@ -226,7 +231,7 @@ public class DoctoerFXMLController implements Initializable {
   private TableColumn<TeacherGroups, Integer> groupNo;
   public ObservableList<TeacherGroups> addGroups(){
     ObservableList<TeacherGroups> myGroups = FXCollections.observableArrayList();
-    String statment="SELECT DISTINCT GROUPS.GROUPID AS groupID, LEVELNUMBER AS levNo, SPECIALIZATION AS Specilazation, GROUPNAME AS groupNo FROM EDUCATION, STUDENTS, GROUPS, DOCTOR, SUBJECTS WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID AND STUDENTS.STUDENTID=EDUCATION.STUDENTID;";
+    String statment="SELECT GROUPS.GROUPID AS groupID, LEVELNUMBER AS levNo, SPECIALIZATION AS Specilazation, GROUPNAME AS groupNo FROM EDUCATION, STUDENTS, GROUPS, DOCTOR, SUBJECTS WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID AND STUDENTS.STUDENTID=EDUCATION.STUDENTID;";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
@@ -264,6 +269,13 @@ public class DoctoerFXMLController implements Initializable {
   public void CloseWindow() throws Exception {
     // hide login page
     logoutBut.getScene().getWindow().hide();
+    // return to login GUI
+    Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+    Stage stage = new Stage();
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    stage.setTitle("Tanzim login");
   }
     
 }

@@ -23,11 +23,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 
 /**
@@ -186,9 +190,16 @@ public class StudentsFXMLController implements Initializable {
     addMsgShowDataList();
   }
   
-  public void closeWindow(ActionEvent e){
+  public void closeWindow(ActionEvent e) throws IOException{
     // hide login page
     logoutBut.getScene().getWindow().hide();
+    // return to login GUI
+    Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+    Stage stage = new Stage();
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+    stage.setTitle("Tanzim login");
   }
   private int getLevelNumber(){
     int lev=1;
