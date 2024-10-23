@@ -32,11 +32,11 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="StudyCourse" editable="true" layoutX="14.0" layoutY="98.0" prefHeight="510.0" prefWidth="754.0" style="-fx-background-color: #eee;">
+                              <TableView fx:id="StudyCourse" editable="true" layoutX="14.0" layoutY="98.0" prefHeight="510.0" prefWidth="754.0" style="-fx-background-color: #eee;" styleClass="table" stylesheets="@main.css">
                                 <columns>
-                                  <TableColumn fx:id="couseName" prefWidth="556.0" text="Couers" />
-                                  <TableColumn fx:id="teacherName" prefWidth="124.0" text="Doctoer" />
-                                    <TableColumn fx:id="avg" prefWidth="73.0" text="Avg" />
+                                  <TableColumn fx:id="couseName" prefWidth="464.0" text="Couers" />
+                                  <TableColumn fx:id="teacherName" prefWidth="193.0" text="Doctoer" />
+                                    <TableColumn fx:id="avg" prefWidth="95.0" text="Avg" />
                                 </columns>
                               </TableView>
                               <HBox alignment="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="100.0" prefWidth="785.0">
@@ -73,9 +73,9 @@
                                  <children>
                                     <TableView fx:id="GeneralizationDateList" editable="true" prefHeight="442.0" prefWidth="754.0" style="-fx-background-color: #eee;">
                                        <columns>
-                                          <TableColumn fx:id="msg" prefWidth="562.0" text="Generalization" />
-                                          <TableColumn fx:id="doctorName" prefWidth="118.0" text="Doctoer" />
-                                          <TableColumn fx:id="sendDate" prefWidth="73.0" text="date" />
+                                          <TableColumn fx:id="msg" prefWidth="515.0" text="Generalization" />
+                                          <TableColumn fx:id="doctorName" prefWidth="151.0" text="Doctoer" />
+                                          <TableColumn fx:id="sendDate" prefWidth="86.0" text="date" />
                                        </columns>
                                     </TableView>
                                     <Button mnemonicParsing="false" onAction="#refreachGeneralization" prefHeight="47.0" prefWidth="755.0" style="-fx-background-color: #3282F6; -fx-border-radius: 0px; -fx-background-radius: 0px;" text="Refreach" textFill="WHITE">
