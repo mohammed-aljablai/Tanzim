@@ -110,7 +110,7 @@ public class DoctoerFXMLController implements Initializable {
       DataBaseConnection connect = new DataBaseConnection();
       Connection myConnect = connect.getConnection();
       String myStatement
-            = "INSERT INTO GENERALIZATION (DOCTORID, GROUPID, HISTORYOFSEND, CONTENT) VALUES (?, ?, ?, ?)";
+            = "INSERT INTO GENERALIZATION (DOCTORID, GROUPID, HISTORYOFSEND, CONTENT, ID) VALUES (?, ?, ?, ?, ?)";
       PreparedStatement statement;
       try {
         statement = myConnect.prepareStatement(myStatement);
@@ -129,6 +129,24 @@ public class DoctoerFXMLController implements Initializable {
         msgWrong.setTextFill(Color.RED);
       }
     }
+  public int getLastGenId(){
+    int id=0;
+    DataBaseConnection connect = new DataBaseConnection();
+      Connection myConnect = connect.getConnection();
+      String myStatement
+            = "select MAX(ID) from GENERALIZATION";
+      PreparedStatement statement;
+    try {
+      stateSentence = myConnect.createStatement();
+      theResult = stateSentence.executeQuery(myStatement);
+        if (theResult.next() && theResult != null) {
+          id = theResult.getInt("MAX(ID)");
+        }
+    }catch(SQLException exs){
+      System.err.println("The Error: " + exs.getMessage());
+    }  
+    return id+1;
+  }
   public boolean groupIsExist(){
     boolean isExist= false;
     

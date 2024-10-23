@@ -78,7 +78,7 @@ CREATE TABLE Doctor (
 CREATE TABLE Education (subjectID NUMBER(5) NOT NULL,  StudentID NUMBER(8) NOT NULL, doctorID NUMBER(6) NOT NULL,  degree number(3), constraint degree_checker_for_sub check(degree >= 0 AND degree <= 100),  theTeachingYear NUMBER(4) NOT NULL, PRIMARY KEY (subjectID, StudentID, doctorID), FOREIGN KEY (StudentID) REFERENCES Students(StudentID) ON DELETE CASCADE, FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE, FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID) ON DELETE CASCADE );
 -- حذفت ال القوس المحدب اصلن ما ادري انت ليش ضفته
 
-create table Generalization(  doctorID NUMBER(6) NOT NULL, groupID NUMBER(5) NOT NULL, historyOfSend DATE, Content varchar2(1000), PRIMARY KEY (doctorID, groupID), FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE,FOREIGN KEY (groupID) REFERENCES Groups(groupID) ON DELETE CASCADE );
+create table Generalization(  doctorID NUMBER(6) NOT NULL, groupID NUMBER(5) NOT NULL, historyOfSend DATE, Content varchar2(1000),ID Number(20) ,PRIMARY KEY (ID), FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID) ON DELETE CASCADE,FOREIGN KEY (groupID) REFERENCES Groups(groupID) ON DELETE CASCADE );
 -----------------------------------------------------------------
 
 insert into groups values(1, 1, 'science and engineering', 'cs', 1);
@@ -147,8 +147,11 @@ commit;
 
 ---------------------------------------------------
 
-
-
+-- في حال انشءت الجدول قبل 23 اوكتبر قم بالشرط التالي
+alter table GENERALIZATION drop primary key;
+Delete from GENERALIZATION;
+Alter table GENERALIZATION Add id Number(20);
+Alter table GENERALIZATION Add constraint g_pk primary key(id Number(20));
 
 
 
