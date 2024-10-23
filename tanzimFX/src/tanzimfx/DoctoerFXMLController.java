@@ -231,7 +231,7 @@ public class DoctoerFXMLController implements Initializable {
   private TableColumn<TeacherGroups, Integer> groupNo;
   public ObservableList<TeacherGroups> addGroups(){
     ObservableList<TeacherGroups> myGroups = FXCollections.observableArrayList();
-    String statment="SELECT GROUPS.GROUPID AS groupID, LEVELNUMBER AS levNo, SPECIALIZATION AS Specilazation, GROUPNAME AS groupNo FROM EDUCATION, STUDENTS, GROUPS, DOCTOR, SUBJECTS WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID AND STUDENTS.STUDENTID=EDUCATION.STUDENTID;";
+    String statment="SELECT DISTINCT GROUPS.GROUPID AS groupID, LEVELNUMBER AS levNo, SPECIALIZATION AS Specilazation, GROUPNAME AS groupNo FROM EDUCATION, STUDENTS, GROUPS, DOCTOR WHERE DOCTOR.DOCTORID="+myId+" AND DOCTOR.DOCTORID=EDUCATION.DOCTORID AND STUDENTS.GROUPID=GROUPS.GROUPID AND STUDENTS.STUDENTID=EDUCATION.STUDENTID";
     DataBaseConnection c=new DataBaseConnection();
     Connection myConnect=c.getConnection();
     try {
